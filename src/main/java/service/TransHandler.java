@@ -66,15 +66,15 @@ public class TransHandler implements ActionListener {
         int flag = 2;
         //高复流
         List<ReserveProtect> HighReserve = new ArrayList<>();
-        if(putIn(transFrame.getHigh1_current().getText())) {
+        if(putIn(transFrame.getHigh1_time().getText())) {
             ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段1时限",transFrame.getHigh1_current().getText(), transFrame.getHigh1_time().getText());
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段1时限（控制字）投退");
             flag--;
             protect.setAction("跳110kV侧断路器");
             HighReserve.add(protect);
         }
-        if(putIn(transFrame.getHigh2_current().getText())) {
-            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段2时限",transFrame.getHigh2_current().getText(),transFrame.getHigh2_time().getText());
+        if(putIn(transFrame.getHigh2_time().getText())) {
+            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段2时限",transFrame.getHigh1_current().getText(),transFrame.getHigh2_time().getText());
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段2时限（控制字）投退");
             if(flag ==2){
                 protect.setAction("跳110kV侧断路器");
@@ -83,18 +83,18 @@ public class TransHandler implements ActionListener {
             }
             HighReserve.add(protect);
         }
-        if(putIn(transFrame.getHigh3_current().getText())) {
-            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段3时限", transFrame.getHigh3_current().getText(),transFrame.getHigh3_time().getText());
+        if(putIn(transFrame.getHigh3_time().getText())) {
+            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段3时限", transFrame.getHigh1_current().getText(),transFrame.getHigh3_time().getText());
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             HighReserve.add(protect);
         }
         int total=0;
-        if(putIn(transFrame.getHigh2_1_current().getText())) total++;
-        if(putIn(transFrame.getHigh2_2_current().getText())) total++;
-        if(putIn(transFrame.getHigh2_3_current().getText())) total++;
+        if(putIn(transFrame.getHigh2_1_time().getText())) total++;
+        if(putIn(transFrame.getHigh2_2_time().getText())) total++;
+        if(putIn(transFrame.getHigh2_3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getHigh2_1_current().getText())) {
+        if(putIn(transFrame.getHigh2_1_time().getText())) {
             ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段1时限",transFrame.getHigh2_1_current().getText(),transFrame.getHigh2_1_time().getText());
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段1时限（控制字）投退");
             if(total==1){
@@ -105,8 +105,8 @@ public class TransHandler implements ActionListener {
             }
             HighReserve.add(protect);
         }
-        if(putIn(transFrame.getHigh2_2_current().getText())) {
-            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段2时限",transFrame.getHigh2_2_current().getText(),transFrame.getHigh2_2_time().getText());
+        if(putIn(transFrame.getHigh2_2_time().getText())) {
+            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段2时限",transFrame.getHigh2_1_current().getText(),transFrame.getHigh2_2_time().getText());
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段2时限（控制字）投退");
             if(total==1){
                 protect.setAction("跳主变三侧断路器");
@@ -119,8 +119,8 @@ public class TransHandler implements ActionListener {
             }
             HighReserve.add(protect);
         }
-        if(putIn(transFrame.getHigh2_3_current().getText())) {
-            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段3时限", transFrame.getHigh2_3_current().getText(),transFrame.getHigh2_3_time().getText());
+        if(putIn(transFrame.getHigh2_3_time().getText())) {
+            ReserveProtect protect = new ReserveProtect("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段3时限", transFrame.getHigh2_1_current().getText(),transFrame.getHigh2_3_time().getText());
             HighReserve.add(protect);
             protect.setPlaten("高压侧复压方向过流"+transFrame.getHighComplexNum2().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
@@ -128,15 +128,15 @@ public class TransHandler implements ActionListener {
         //高零流
         flag = 2;
         List<ReserveProtect> HighZeroProtect = new ArrayList<>();
-        if(putIn(transFrame.getHighZero1_current().getText())){
+        if(putIn(transFrame.getHighZero1_time().getText())){
             ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum().getSelectedItem()+"段1时限",transFrame.getHighZero1_current().getText(), transFrame.getHighZero1_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum().getSelectedItem()+"段1时限（控制字）投退");
             flag--;
             protect.setAction("跳110kV侧断路器");
             HighZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getHighZero2_current().getText())){
-            ReserveProtect protect =  new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum().getSelectedItem()+"段2时限",transFrame.getHighZero2_current().getText(), transFrame.getHighZero2_time().getText());
+        if(putIn(transFrame.getHighZero2_time().getText())){
+            ReserveProtect protect =  new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum().getSelectedItem()+"段2时限",transFrame.getHighZero1_current().getText(), transFrame.getHighZero2_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum().getSelectedItem()+"段2时限（控制字）投退");
             if(flag ==2){
                 protect.setAction("跳110kV侧断路器");
@@ -145,18 +145,18 @@ public class TransHandler implements ActionListener {
             }
             HighZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getHighZero3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum().getSelectedItem()+"段3时限",transFrame.getHighZero3_current().getText(), transFrame.getHighZero3_time().getText());
+        if(putIn(transFrame.getHighZero3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum().getSelectedItem()+"段3时限",transFrame.getHighZero1_current().getText(), transFrame.getHighZero3_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             HighZeroProtect.add(protect);
         }
         total = 0;
-        if(putIn(transFrame.getHighZero2_1_current().getText())) total++;
-        if(putIn(transFrame.getHighZero2_2_current().getText())) total++;
-        if(putIn(transFrame.getHighZero2_3_current().getText())) total++;
+        if(putIn(transFrame.getHighZero2_1_time().getText())) total++;
+        if(putIn(transFrame.getHighZero2_2_time().getText())) total++;
+        if(putIn(transFrame.getHighZero2_3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getHighZero2_1_current().getText())){
+        if(putIn(transFrame.getHighZero2_1_time().getText())){
             ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段1时限",transFrame.getHighZero2_1_current().getText(), transFrame.getHighZero2_1_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段1时限（控制字）投退");
             if(total==1){
@@ -167,8 +167,8 @@ public class TransHandler implements ActionListener {
             }
             HighZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getHighZero2_2_current().getText())){
-            ReserveProtect protect =  new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段2时限",transFrame.getHighZero2_2_current().getText(), transFrame.getHighZero2_2_time().getText());
+        if(putIn(transFrame.getHighZero2_2_time().getText())){
+            ReserveProtect protect =  new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段2时限",transFrame.getHighZero2_1_current().getText(), transFrame.getHighZero2_2_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段2时限（控制字）投退");
             if(total==1){
                 protect.setAction("跳主变三侧断路器");
@@ -181,8 +181,8 @@ public class TransHandler implements ActionListener {
             }
             HighZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getHighZero2_3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段3时限",transFrame.getHighZero2_3_current().getText(), transFrame.getHighZero2_3_time().getText());
+        if(putIn(transFrame.getHighZero2_3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("高压侧零序过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段3时限",transFrame.getHighZero2_1_current().getText(), transFrame.getHighZero2_3_time().getText());
             protect.setPlaten("高压侧零序方向过流"+transFrame.getHighZeroNum2().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             HighZeroProtect.add(protect);
@@ -191,11 +191,11 @@ public class TransHandler implements ActionListener {
         //中复压
         List<ReserveProtect> MiddleReserve = new ArrayList<>();
         total = 0;
-        if(putIn(transFrame.getMiddle1_current().getText())) total++;
-        if(putIn(transFrame.getMiddle2_current().getText())) total++;
-        if(putIn(transFrame.getMiddle3_current().getText())) total++;
+        if(putIn(transFrame.getMiddle1_time().getText())) total++;
+        if(putIn(transFrame.getMiddle2_time().getText())) total++;
+        if(putIn(transFrame.getMiddle3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getMiddle1_current().getText())){
+        if(putIn(transFrame.getMiddle1_time().getText())){
             ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段1时限",transFrame.getMiddle1_current().getText(), transFrame.getMiddle1_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -206,8 +206,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleReserve.add(protect);
         }
-        if(putIn(transFrame.getMiddle2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段2时限",transFrame.getMiddle2_current().getText(),transFrame.getMiddle2_time().getText());
+        if(putIn(transFrame.getMiddle2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段2时限",transFrame.getMiddle1_current().getText(),transFrame.getMiddle2_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 protect.setAction("跳110kV侧断路器");
@@ -216,19 +216,19 @@ public class TransHandler implements ActionListener {
             }
             MiddleReserve.add(protect);
         }
-        if(putIn(transFrame.getMiddle3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段3时限", transFrame.getMiddle3_current().getText(),transFrame.getMiddle3_time().getText());
+        if(putIn(transFrame.getMiddle3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段3时限", transFrame.getMiddle1_current().getText(),transFrame.getMiddle3_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum().getSelectedItem()+"段2时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             MiddleReserve.add(protect);
         }
 
         total = 0;
-        if(putIn(transFrame.getMiddle2_1_current().getText())) total++;
-        if(putIn(transFrame.getMiddle2_2_current().getText())) total++;
-        if(putIn(transFrame.getMiddle2_3_current().getText())) total++;
+        if(putIn(transFrame.getMiddle2_1_time().getText())) total++;
+        if(putIn(transFrame.getMiddle2_2_time().getText())) total++;
+        if(putIn(transFrame.getMiddle2_3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getMiddle2_1_current().getText())){
+        if(putIn(transFrame.getMiddle2_1_time().getText())){
             ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段1时限",transFrame.getMiddle2_1_current().getText(), transFrame.getMiddle2_1_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -241,8 +241,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleReserve.add(protect);
         }
-        if(putIn(transFrame.getMiddle2_2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段2时限",transFrame.getMiddle2_2_current().getText(),transFrame.getMiddle2_2_time().getText());
+        if(putIn(transFrame.getMiddle2_2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段2时限",transFrame.getMiddle2_1_current().getText(),transFrame.getMiddle2_2_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 protect.setAction("跳110kV侧断路器");
@@ -251,8 +251,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleReserve.add(protect);
         }
-        if(putIn(transFrame.getMiddle3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段3时限", transFrame.getMiddle2_3_current().getText(),transFrame.getMiddle2_3_time().getText());
+        if(putIn(transFrame.getMiddle3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段3时限", transFrame.getMiddle2_1_current().getText(),transFrame.getMiddle2_3_time().getText());
             protect.setPlaten("中压侧复压方向过流"+transFrame.getMiddleComplexNum2().getSelectedItem()+"段2时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             MiddleReserve.add(protect);
@@ -261,11 +261,11 @@ public class TransHandler implements ActionListener {
         //中零流
         List<ReserveProtect> MiddleZeroProtect =new ArrayList<>();
         total = 0;
-        if(putIn(transFrame.getMiddleZero1_current().getText())) total++;
-        if(putIn(transFrame.getMiddleZero2_current().getText())) total++;
-        if(putIn(transFrame.getMiddleZero2_current().getText())) total++;
+        if(putIn(transFrame.getMiddleZero1_time().getText())) total++;
+        if(putIn(transFrame.getMiddleZero2_time().getText())) total++;
+        if(putIn(transFrame.getMiddleZero2_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getMiddleZero1_current().getText())){
+        if(putIn(transFrame.getMiddleZero1_time().getText())){
             ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段1时限",transFrame.getMiddleZero1_current().getText(), transFrame.getMiddleZero1_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -276,8 +276,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getMiddleZero2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段2时限",transFrame.getMiddleZero2_current().getText(), transFrame.getMiddleZero2_time().getText());
+        if(putIn(transFrame.getMiddleZero2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段2时限",transFrame.getMiddleZero1_current().getText(), transFrame.getMiddleZero2_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 protect.setAction("跳110kV侧断路器");
@@ -286,19 +286,19 @@ public class TransHandler implements ActionListener {
             }
             MiddleZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getMiddleZero3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段3时限",transFrame.getMiddleZero3_current().getText(), transFrame.getMiddleZero3_time().getText());
+        if(putIn(transFrame.getMiddleZero3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段3时限",transFrame.getMiddleZero1_current().getText(), transFrame.getMiddleZero3_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             MiddleZeroProtect.add(protect);
         }
 
         total = 0;
-        if(putIn(transFrame.getMiddleZero2_1_current().getText())) total++;
-        if(putIn(transFrame.getMiddleZero2_2_current().getText())) total++;
-        if(putIn(transFrame.getMiddleZero2_3_current().getText())) total++;
+        if(putIn(transFrame.getMiddleZero2_1_time().getText())) total++;
+        if(putIn(transFrame.getMiddleZero2_2_time().getText())) total++;
+        if(putIn(transFrame.getMiddleZero2_3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getMiddleZero2_1_current().getText())){
+        if(putIn(transFrame.getMiddleZero2_1_time().getText())){
             ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段1时限",transFrame.getMiddleZero2_1_current().getText(), transFrame.getMiddleZero2_1_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -311,8 +311,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getMiddleZero2_2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段2时限",transFrame.getMiddleZero2_2_current().getText(),transFrame.getMiddleZero2_2_time().getText());
+        if(putIn(transFrame.getMiddleZero2_2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段2时限",transFrame.getMiddleZero2_1_current().getText(),transFrame.getMiddleZero2_2_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 protect.setAction("跳110kV侧断路器");
@@ -321,8 +321,8 @@ public class TransHandler implements ActionListener {
             }
             MiddleZeroProtect.add(protect);
         }
-        if(putIn(transFrame.getMiddleZero2_3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段3时限",transFrame.getMiddleZero2_3_current().getText(),transFrame.getMiddleZero2_3_time().getText());
+        if(putIn(transFrame.getMiddleZero2_3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段3时限",transFrame.getMiddleZero2_1_current().getText(),transFrame.getMiddleZero2_3_time().getText());
             protect.setPlaten("中压侧零序方向过流"+transFrame.getMiddleZeroNum2().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             MiddleZeroProtect.add(protect);
@@ -331,11 +331,11 @@ public class TransHandler implements ActionListener {
         //低复流
         List<ReserveProtect> LowReserve =new ArrayList<>();
         total = 0;
-        if(putIn(transFrame.getLow1_current().getText())) total++;
-        if(putIn(transFrame.getLow2_current().getText())) total++;
-        if(putIn(transFrame.getLow3_current().getText())) total++;
+        if(putIn(transFrame.getLow1_time().getText())) total++;
+        if(putIn(transFrame.getLow2_time().getText())) total++;
+        if(putIn(transFrame.getLow3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getLow1_current().getText())){
+        if(putIn(transFrame.getLow1_time().getText())){
             ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段1时限",transFrame.getLow1_current().getText(), transFrame.getLow1_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -352,8 +352,8 @@ public class TransHandler implements ActionListener {
             }
             LowReserve.add(protect);
         }
-        if(putIn(transFrame.getLow2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段2时限",transFrame.getLow2_current().getText(),transFrame.getLow2_time().getText());
+        if(putIn(transFrame.getLow2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段2时限",transFrame.getLow1_current().getText(),transFrame.getLow2_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 if(transFrame.getPrepareLow().isSelected()){
@@ -366,19 +366,19 @@ public class TransHandler implements ActionListener {
             }
             LowReserve.add(protect);
         }
-        if(putIn(transFrame.getLow3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段3时限", transFrame.getLow3_current().getText(),transFrame.getLow3_time().getText());
+        if(putIn(transFrame.getLow3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段3时限", transFrame.getLow1_current().getText(),transFrame.getLow3_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             LowReserve.add(protect);
         }
 
         total = 0;
-        if(putIn(transFrame.getLow2_1_current().getText())) total++;
-        if(putIn(transFrame.getLow2_2_current().getText())) total++;
-        if(putIn(transFrame.getLow2_3_current().getText())) total++;
+        if(putIn(transFrame.getLow2_1_time().getText())) total++;
+        if(putIn(transFrame.getLow2_2_time().getText())) total++;
+        if(putIn(transFrame.getLow2_3_time().getText())) total++;
         flag = total;
-        if(putIn(transFrame.getLow2_1_current().getText())){
+        if(putIn(transFrame.getLow2_1_time().getText())){
             ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段1时限",transFrame.getLow2_1_current().getText(),transFrame.getLow2_1_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段1时限（控制字）投退");
             if(total==3) {
@@ -391,8 +391,8 @@ public class TransHandler implements ActionListener {
             }
             LowReserve.add(protect);
         }
-        if(putIn(transFrame.getLow2_2_current().getText())){
-            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段2时限",transFrame.getLow2_2_current().getText(),transFrame.getLow2_2_time().getText());
+        if(putIn(transFrame.getLow2_2_time().getText())){
+            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段2时限",transFrame.getLow2_1_current().getText(),transFrame.getLow2_2_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段2时限（控制字）投退");
             if(total==3||flag == 2) {
                 protect.setAction("跳35kV侧断路器");
@@ -401,8 +401,8 @@ public class TransHandler implements ActionListener {
             }
             LowReserve.add(protect);
         }
-        if(putIn(transFrame.getLow2_3_current().getText())){
-            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段3时限", transFrame.getLow2_3_current().getText(),transFrame.getLow2_3_time().getText());
+        if(putIn(transFrame.getLow2_3_time().getText())){
+            ReserveProtect protect = new ReserveProtect("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段3时限", transFrame.getLow2_1_current().getText(),transFrame.getLow2_3_time().getText());
             protect.setPlaten("低压侧复压方向过流"+transFrame.getLowComplexNum2().getSelectedItem()+"段3时限（控制字）投退");
             protect.setAction("跳主变三侧断路器");
             LowReserve.add(protect);
@@ -457,7 +457,7 @@ public class TransHandler implements ActionListener {
 
         try {
             TransMethod.text(title,equipment,mainProtect,mainProtectCal,HighReserve,HighZeroProtect,MiddleReserve,
-                    MiddleZeroProtect,LowReserve,otherProtect);
+                    MiddleZeroProtect,LowReserve,otherProtect, (String) transFrame.getKind().getSelectedItem());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }

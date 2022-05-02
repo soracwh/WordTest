@@ -17,11 +17,12 @@ import java.util.*;
  * @Version 1.0
  */
 public class TransMethod {
-    public static String resource = "src/test/resources/transformer_intelligence.docx";
+    public static String resource_tran = "src/test/resources/transformer_tradition.docx";
+    public static String resource_intel = "src/test/resources/transformer_intelligence.docx";
 
     public static void text(Title title, Equipment equipment, MainProtect mainProtect, MainProtectCal mainProtectCal,
                             List<ReserveProtect> HighReserve,List<ReserveProtect> HighZeroProtect,List<ReserveProtect> MiddleReserve,
-                            List<ReserveProtect> MiddleZeroProtect, List<ReserveProtect> LowReserve,OtherProtect otherProtect) throws IOException {
+                            List<ReserveProtect> MiddleZeroProtect, List<ReserveProtect> LowReserve,OtherProtect otherProtect,String kind) throws IOException {
 
         Map<String, Object> data = new HashMap<>();
         data.put("title",title.toString());
@@ -73,8 +74,18 @@ public class TransMethod {
                 .bind("zero_middle",new ProtectTablePolicy()).bind("protect_low",new ProtectTablePolicy())
                 .bind("high_platen",new PlatenPolicy()).bind("middle_platen",new PlatenPolicy())
                 .bind("low_platen",new PlatenPolicy()).bind("action_table",new ActionPolicy());
+        String resource;
+        String root = System.getProperty("user.dir");
+        if(kind.equals("智能站")){
+            resource = resource_intel;
+            //resource = root+"/transformer_intelligence.docx";
+        }else{
+            resource = resource_tran;
+            //resource = root+"/transformer_tradition.docx";
+        }
         XWPFTemplate template = XWPFTemplate.compile(resource,builder.build()).render(data);
         template.writeToFile("target/"+title.toString()+".docx");
+        //template.writeToFile(root+"/"+title.toString()+".docx");
     }
 
     private static List<RowRenderData> getRow(List<ReserveProtect> protect,List<RowRenderData> platen,List<RowRenderData> action){

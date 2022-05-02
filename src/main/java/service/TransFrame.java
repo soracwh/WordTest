@@ -1,6 +1,5 @@
 package service;
 
-import entity.tans.MainProtect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +10,7 @@ import java.awt.*;
  * @Version 1.0
  */
 public class TransFrame extends JFrame{
+    private final JComboBox<String> Kind = new JComboBox<>();
     private final JTextField eVoltage = new JTextField("220V");
     private final JComboBox<String> VLevel = new JComboBox<>();
     private final JTextField stationName = new JTextField("");
@@ -138,7 +138,7 @@ public class TransFrame extends JFrame{
 
     public TransFrame(){
         setVisible(true);
-        setBounds(400,0,830,800);
+        setBounds(400,0,950,700);
         setTitle("主变保护");
         JPanel panel=new JPanel();
         panel.setLayout(null);
@@ -148,9 +148,16 @@ public class TransFrame extends JFrame{
         //输入保护装置信息
         protectMessage(panel);
 
+        //常规智能
+        Kind.addItem("常规站");
+        Kind.addItem("智能站");
+        Kind.setBounds(150,13,100,30);
+        panel.add(Kind);
+
+
         //提交按钮
         JButton button = new JButton("生成新报告");
-        button.setBounds(700,40,100,50);
+        button.setBounds(750,40,100,50);
         TransHandler transHandler =new TransHandler(this);
         button.addActionListener(transHandler);
         panel.add(button);
@@ -178,81 +185,95 @@ public class TransFrame extends JFrame{
         panel.add(PrepareLow);
 
         //高复流
-        reverseLabel(20,420,panel,highComplexNum,"高压复压过流1：");
+        //reverseLabel(20,420,panel,highComplexNum,"高压复压过流1：");
         //时间和电流
-        TimeCurrent(120,420,panel,High1_current,High1_time,High2_current,High2_time,High3_current,High3_time);
-        reverseLabel(420,420,panel,highComplexNum2,"高压复压过流2：");
-        TimeCurrent(520,420,panel,High2_1_current,High2_1_time,High2_2_current,High2_2_time,High2_3_current,High2_3_time);
+        ReserveProtect(20,420,panel,High1_current,High1_time,High2_time,High3_time,highComplexNum,"高压复压过流1：");
+        ReserveProtect(480,420,panel,High2_1_current,High2_1_time,High2_2_time,High2_3_time,highComplexNum2,"高压复压过流2：");
+        //TimeCurrent(120,420,panel,High1_current,High1_time,High2_current,High2_time,High3_current,High3_time);
+        //reverseLabel(420,420,panel,highComplexNum2,"高压复压过流2：");
+        //TimeCurrent(520,420,panel,High2_1_current,High2_1_time,High2_2_current,High2_2_time,High2_3_current,High2_3_time);
 
-        reverseLabel(20,480,panel,highZeroNum,"高压零序过流1:");
-        TimeCurrent(120,480,panel,HighZero1_current,HighZero1_time,HighZero2_current,HighZero2_time,HighZero3_current,HighZero3_time);
-        reverseLabel(420,480,panel,highZeroNum2,"高压零序过流2");
-        TimeCurrent(520,480,panel,HighZero2_1_current,HighZero2_1_time,HighZero2_2_current,HighZero2_2_time,HighZero2_3_current,HighZero2_3_time);
+//        reverseLabel(20,480,panel,highZeroNum,"高压零序过流1:");
+//        TimeCurrent(120,480,panel,HighZero1_current,HighZero1_time,HighZero2_current,HighZero2_time,HighZero3_current,HighZero3_time);
+//        reverseLabel(420,480,panel,highZeroNum2,"高压零序过流2");
+//        TimeCurrent(520,480,panel,HighZero2_1_current,HighZero2_1_time,HighZero2_2_current,HighZero2_2_time,HighZero2_3_current,HighZero2_3_time);
+        ReserveProtect(20,450,panel,HighZero1_current,HighZero1_time,HighZero2_time,HighZero3_time,highZeroNum,"高压零序过流1:");
+        ReserveProtect(480,450,panel,HighZero2_1_current,HighZero2_1_time,HighZero2_2_time,HighZero2_3_time,highZeroNum2,"高压零序过流2");
 
-        reverseLabel(20,540,panel,middleComplexNum,"中压复压过流1:");
+/*        reverseLabel(20,540,panel,middleComplexNum,"中压复压过流1:");
         TimeCurrent(120,540,panel,Middle1_current,Middle1_time,Middle2_current,Middle2_time,Middle3_current,Middle3_time);
         reverseLabel(420,540,panel,middleComplexNum2,"中压复压过流2:");
-        TimeCurrent(520,540,panel,Middle2_1_current,Middle2_1_time,Middle2_2_current,Middle2_2_time,Middle2_3_current,Middle2_3_time);
+        TimeCurrent(520,540,panel,Middle2_1_current,Middle2_1_time,Middle2_2_current,Middle2_2_time,Middle2_3_current,Middle2_3_time);*/
+        ReserveProtect(20,480,panel,Middle1_current,Middle1_time,Middle2_time,Middle3_time,middleComplexNum,"中压复压过流1:");
+        ReserveProtect(480,480,panel,Middle2_1_current,Middle2_1_time,Middle2_2_time,Middle2_3_time,middleComplexNum2,"中压复压过流2:");
 
-        reverseLabel(20,600,panel,middleZeroNum,"中压零序过流1:");
-        TimeCurrent(120,600,panel,MiddleZero1_current,MiddleZero1_time,MiddleZero2_current,MiddleZero2_time,MiddleZero3_current,MiddleZero3_time);
-        reverseLabel(420,600,panel,middleZeroNum2,"中压零序过流2:");
-        TimeCurrent(520,600,panel,MiddleZero2_1_current,MiddleZero2_1_time,MiddleZero2_2_current,MiddleZero2_2_time,MiddleZero2_3_current,MiddleZero2_3_time);
+//        reverseLabel(20,600,panel,middleZeroNum,"中压零序过流1:");
+//        TimeCurrent(120,600,panel,MiddleZero1_current,MiddleZero1_time,MiddleZero2_current,MiddleZero2_time,MiddleZero3_current,MiddleZero3_time);
+//        reverseLabel(420,600,panel,middleZeroNum2,"中压零序过流2:");
+//        TimeCurrent(520,600,panel,MiddleZero2_1_current,MiddleZero2_1_time,MiddleZero2_2_current,MiddleZero2_2_time,MiddleZero2_3_current,MiddleZero2_3_time);
+        ReserveProtect(20,510,panel,MiddleZero1_current,MiddleZero1_time,MiddleZero2_time,MiddleZero3_time,middleZeroNum,"中压零序过流1:");
+        ReserveProtect(480,510,panel,MiddleZero2_1_current,MiddleZero2_1_time,MiddleZero2_2_time,MiddleZero2_3_time,middleZeroNum2,"中压零序过流1:");
 
-        reverseLabel(20,660,panel,lowComplexNum,"低压复压过流1:");
-        TimeCurrent(120,660,panel,Low1_current,Low1_time,Low2_current,Low2_time,Low3_current,Low3_time);
-        reverseLabel(420,660,panel,lowComplexNum2,"低压复压过流2:");
-        TimeCurrent(520,660,panel,Low2_1_current,Low2_1_time,Low2_2_current,Low2_2_time,Low2_3_current,Low2_3_time);
+//        reverseLabel(20,660,panel,lowComplexNum,"低压复压过流1:");
+//        TimeCurrent(120,660,panel,Low1_current,Low1_time,Low2_current,Low2_time,Low3_current,Low3_time);
+//        reverseLabel(420,660,panel,lowComplexNum2,"低压复压过流2:");
+//        TimeCurrent(520,660,panel,Low2_1_current,Low2_1_time,Low2_2_current,Low2_2_time,Low2_3_current,Low2_3_time);
+        ReserveProtect(20,540,panel,Low1_current,Low1_time,Low2_time,Low3_time,lowComplexNum,"低压复压过流1:");
+        ReserveProtect(480,540,panel,Low2_1_current,Low2_1_time,Low2_2_time,Low2_3_time,lowComplexNum2,"低压复压过流2:");
 
         //其他保护
+        JLabel label3 = new JLabel("其他保护:");
+        label3.setFont(new Font("宋体",Font.BOLD,15));
+        label3.setBounds(20,580,200,30);
+        panel.add(label3);
         otherProtect(panel);
 
     }
     private void otherProtect(JPanel panel){
         JLabel label1 = new JLabel("间隙零流(CT变比)：高");
-        label1.setBounds(20,730,130,30);
+        label1.setBounds(20,610,130,30);
         panel.add(label1);
-        HighGapZeroRation.setBounds(150,730,50,30);
+        HighGapZeroRation.setBounds(150,610,50,30);
         panel.add(HighGapZeroRation);
         JLabel label2 = new JLabel("：");
-        label2.setBounds(205,730,100,30);
+        label2.setBounds(205,610,100,30);
         panel.add(label2);
-        HighGapZeroCurrent.setBounds(215,730,50,30);
+        HighGapZeroCurrent.setBounds(215,610,50,30);
         panel.add(HighGapZeroCurrent);
         JLabel label6 = new JLabel("时间");
-        label6.setBounds(270,730,50,30);
+        label6.setBounds(270,610,50,30);
         panel.add(label6);
-        HighGapZeroTime.setBounds(300,730,50,30);
+        HighGapZeroTime.setBounds(300,610,50,30);
         panel.add(HighGapZeroTime);
 
         JLabel label5 = new JLabel("中");
-        label5.setBounds(370,730,120,30);
+        label5.setBounds(370,610,120,30);
         panel.add(label5);
-        MiddleGapZeroRation.setBounds(390,730,50,30);
+        MiddleGapZeroRation.setBounds(390,610,50,30);
         panel.add(MiddleGapZeroRation);
         JLabel label3 = new JLabel("：");
-        label3.setBounds(440,730,100,30);
+        label3.setBounds(440,610,100,30);
         panel.add(label3);
-        MiddleGapZeroCurrent.setBounds(450,730,50,30);
+        MiddleGapZeroCurrent.setBounds(450,610,50,30);
         panel.add(MiddleGapZeroCurrent);
         JLabel label7 = new JLabel("时间");
-        label7.setBounds(505,730,50,30);
+        label7.setBounds(505,610,50,30);
         panel.add(label7);
-        MiddleGapZeroTime.setBounds(535,730,50,30);
+        MiddleGapZeroTime.setBounds(535,610,50,30);
         panel.add(MiddleGapZeroTime);
 
         JLabel label4 = new JLabel("零压保护：");
-        label4.setBounds(600,730,120,30);
+        label4.setBounds(600,610,120,30);
         panel.add(label4);
-        InnerOuter.setBounds(655,732,80,30);
+        InnerOuter.setBounds(655,612,80,30);
         InnerOuter.addItem("外接");
         InnerOuter.addItem("自产");
         InnerOuter.addItem("-");
         panel.add(InnerOuter);
         JLabel label8 = new JLabel("时间：");
-        label8.setBounds(735,730,120,30);
+        label8.setBounds(735,610,120,30);
         panel.add(label8);
-        ZeroVoltageTime.setBounds(765,730,50,30);
+        ZeroVoltageTime.setBounds(765,610,50,30);
         panel.add(ZeroVoltageTime);
 
     }
@@ -295,7 +316,31 @@ public class TransFrame extends JFrame{
         panel.add(time2);
     }
 
-    private void reverseLabel(int x,int y,JPanel panel,JComboBox<String> jComboBox,String s) {
+    private void ReserveProtect(int x, int y, JPanel panel, JTextField current, JTextField time1, JTextField time2, JTextField time3,JComboBox<String> jComboBox,String s) {
+        JLabel label3 = new JLabel(s);
+        label3.setFont(new Font("宋体",Font.BOLD,13));
+        label3.setBounds(x,y,100,30);
+        panel.add(label3);
+        jComboBox.setBounds(x+90,y+2,60,30);
+        panel.add(jComboBox);
+        jComboBox.addItem("II");
+        jComboBox.addItem("I");
+        jComboBox.addItem("III");
+        jComboBox.addItem("-");
+        current.setBounds(x + 150, y, 50, 30);
+        panel.add(current);
+        JLabel label2 = new JLabel("三段(ms):");
+        label2.setBounds(x + 205,y,80,30);
+        panel.add(label2);
+        time1.setBounds(x + 270, y, 50, 30);
+        panel.add(time1);
+        time2.setBounds(x + 330, y, 50, 30);
+        panel.add(time2);
+        time3.setBounds(x + 390, y, 50, 30);
+        panel.add(time3);
+    }
+
+    /*private void reverseLabel(int x,int y,JPanel panel,JComboBox<String> jComboBox,String s) {
         JLabel label3 = new JLabel(s);
         label3.setFont(new Font("宋体",Font.BOLD,13));
         label3.setBounds(x,y,100,30);
@@ -309,7 +354,7 @@ public class TransFrame extends JFrame{
         jComboBox.addItem("I");
         jComboBox.addItem("III");
         jComboBox.addItem("-");
-    }
+    }*/
 
     private void differential(JPanel panel){
         JLabel label = new JLabel("差动保护:");
@@ -336,21 +381,21 @@ public class TransFrame extends JFrame{
         panel.add(label4);
         differentialWarning.setBounds(550,350,50,30);
         panel.add(differentialWarning);
-        JLabel label8 = new JLabel("差流告警时间：");
+        JLabel label8 = new JLabel("时间：");
         label8.setBounds(610,350,100,30);
         panel.add(label8);
-        differentialWarningTime.setBounds(695,350,50,30);
+        differentialWarningTime.setBounds(645,350,50,30);
         panel.add(differentialWarningTime);
 
         JLabel label5 = new JLabel("过负荷(Ie)：");
-        label5.setBounds(610,200,120,30);
+        label5.setBounds(710,350,120,30);
         panel.add(label5);
-        OverLoadCurrent.setBounds(675,220,50,30);
+        OverLoadCurrent.setBounds(775,350,50,30);
         panel.add(OverLoadCurrent);
         JLabel label6 = new JLabel("时间：");
-        label6.setBounds(735,220,100,30);
+        label6.setBounds(830,350,100,30);
         panel.add(label6);
-        OverLoadTime.setBounds(770,220,50,30);
+        OverLoadTime.setBounds(870,350,50,30);
         panel.add(OverLoadTime);
     }
     private void MainProtect(JPanel panel, String s, int y,JTextField Capacity,
@@ -898,5 +943,9 @@ public class TransFrame extends JFrame{
 
     public JTextField getDifferentialWarningTime() {
         return differentialWarningTime;
+    }
+
+    public JComboBox<String> getKind() {
+        return Kind;
     }
 }
